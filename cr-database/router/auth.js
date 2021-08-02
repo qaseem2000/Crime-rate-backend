@@ -22,7 +22,10 @@ router.post("/", async (req, res) => {
         const token = user.generateAuthToken();
         //const token = jwt.sign({_id:user._id, userType:user.userType},"QWERTY");
         //console.log(token);
-        res.header("x-auth-token", token).status(200).send(token);
+        res
+          .header("x-auth-token", token)
+          .status(200)
+          .send({ token: token, email: user.email, name: user.username });
         //res.status(200).send(token);
       } else {
         res.status(400).send({ message: "Invalid email or password" });
