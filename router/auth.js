@@ -11,6 +11,11 @@ router.post("/", async (req, res) => {
   //const {error} =validate(req.body);
   //if(error) return res.send(400).send(error.details[0].message);
 
+  res.setHeader("Access-Control-Allow-Origin", "*")
+res.setHeader("Access-Control-Allow-Credentials", "true");
+res.setHeader("Access-Control-Max-Age", "1800");
+res.setHeader("Access-Control-Allow-Headers", "content-type");
+res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" ); 
   const user = await User.findOne({ email: req.body.email });
   if (!user) return res.status(400).send({ message: "Invalid pass or email" });
   await bcrypt
