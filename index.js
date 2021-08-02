@@ -3,21 +3,21 @@ const mongoose = require('mongoose');
 const express = require('express');
 const users = require('./router/users');
 const auth = require('./router/auth');
-const cors= require('cors');
+const cors = require('cors');
 
-const app=express();
+const app = express();
 
 console.log(`Enviorment: ${process.env.NoDE_ENV}`);
 
-mongoose.connect(config.connectionstring,{
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-    useCreateIndex: true,
-    serverSelectionTimeoutMS: 3000
-  })
-    .then(()=>{console.log("Connect to database")})
-    .catch((e)=>{console.error(e)});
+mongoose.connect(config.connectionstring, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  useCreateIndex: true,
+  serverSelectionTimeoutMS: 3000
+})
+  .then(() => { console.log("Connect to database") })
+  .catch((e) => { console.error(e) });
 
 
 
@@ -28,13 +28,12 @@ app.use(express.json());
 //   optionSuccessStatus:200
 // }
 
-// app.options('*', cors()) ;
+app.options('*', cors());
 app.use(cors());
-// app.use(cors(corsOptions));
 
-app.use('/api/users',users);
-app.use('/api/auth',auth);
+app.use('/api/users', users);
+app.use('/api/auth', auth);
 
 
-const port =process.env.PORT || 3000;
-app.listen(port,()=>console.log(`listening on port ${port}`));
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`listening on port ${port}`));
