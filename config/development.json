@@ -1,4 +1,4 @@
 {
     
-    "connectionstring":"mongodb+srv://subhan:<subhan09ahmed>@cluster0.zd0y4.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+    "connectionstring":"mongodb+srv://subhan09:subhan09ahmed@cluster0.zd0y4.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 }

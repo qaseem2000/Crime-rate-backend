@@ -17,7 +17,7 @@ mongoose.connect(config.connectionstring,{
     serverSelectionTimeoutMS: 3000
   })
     .then(()=>{console.log("Connect to database")})
-    .catch(()=>{console.error("Error connecting database")});
+    .catch((e)=>{console.error(e)});
 
 
 
