@@ -23,12 +23,12 @@ mongoose.connect(config.connectionstring, {
 
 app.use(express.json());
 // const corsOptions ={
-//   origin:'http://localhost:3000', 
+//   origin:'*', 
 //   credentials:true,            //access-control-allow-credentials:true
 //   optionSuccessStatus:200
 // }
 
-app.options('*', cors());
+// app.options('*', cors());
 app.use(cors());
 
 app.use('/api/users', users);
