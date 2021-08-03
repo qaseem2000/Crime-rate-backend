@@ -29,7 +29,7 @@ router.post("/", async (req, res) => {
     .header("x-auth-token", token)
     .send(_.pick(user, ["_id", "name", "email", "userType"]));
 
-  //res.status(200).send(result);
+  res.status(200).send(result);
 });
 
 router.get("/userdetail", [auth], async (req, res) => {
