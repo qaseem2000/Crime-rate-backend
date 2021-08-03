@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const express = require('express');
 const users = require('./router/users');
 const auth = require('./router/auth');
+
 const cors = require('cors');
 
 const app = express();
@@ -30,6 +31,10 @@ app.use(express.json());
 
 app.options('*', cors());
 app.use(cors());
+
+app.get('/',async (req, res) => {
+  res.send("Build-back-end")
+})
 
 app.use('/api/users', users);
 app.use('/api/auth', auth);
