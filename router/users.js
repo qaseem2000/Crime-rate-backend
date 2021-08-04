@@ -6,7 +6,7 @@ const _ = require("lodash");
 const auth = require("../middleware/auth");
 
 const cors = require('cors')
-router.post("/", cors(),async (req, res) => {
+router.post("/", cors({origin:'*',credentials:true}),async (req, res) => {
   //const {error}=validate(req.body);
   //if(error) return res.status(400).send(error.details[0].message);
   let user = await User.findOne({ email: req.body.email });
