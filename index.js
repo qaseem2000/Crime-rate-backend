@@ -30,7 +30,7 @@ app.use(express.json());
 // }
 
 app.options('*', cors());
-app.use(cors());
+app.use(cors({origin:'*',credentials:true}));
 
 app.get('/',async (req, res) => {
   res.send("Build-back-end")
