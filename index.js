@@ -9,8 +9,8 @@ const cors = require('cors');
 const app = express();
 
 console.log(`Enviorment: ${process.env.NoDE_ENV}`);
-
-mongoose.connect(config.connectionstring, {
+const url="mongodb+srv://sam:sam@cluster0.zd0y4.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+mongoose.connect(url, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
