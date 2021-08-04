@@ -9,10 +9,8 @@ const jwt = require("jsonwebtoken");
 
 
 const cors = require('cors')
- 
-router.post("/",cors(), async (req, res) => {
-  //const {error} =validate(req.body);
-  //if(error) return res.send(400).send(error.details[0].message);
+
+router.post("/", cors(), async (req, res) => {
 
   const user = await User.findOne({ email: req.body.email });
   if (!user) return res.status(400).send({ message: "Invalid pass or email" });
@@ -20,7 +18,7 @@ router.post("/",cors(), async (req, res) => {
     .compare(req.body.password, user.password)
     .then((validpassword) => {
       if (validpassword) {
-        //res.status(200).send("logged In successfully");
+        res.status(200).send("logged In successfully");
         console.log(1111);
         const token = user.generateAuthToken();
         //const token = jwt.sign({_id:user._id, userType:user.userType},"QWERTY");
@@ -29,7 +27,6 @@ router.post("/",cors(), async (req, res) => {
           .header("x-auth-token", token)
           .status(200)
           .send({ token: token, email: user.email, name: user.username });
-        //res.status(200).send(token);
       } else {
         res.status(400).send({ message: "Invalid email or password" });
       }

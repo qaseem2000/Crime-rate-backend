@@ -9,7 +9,7 @@ const cors = require('cors');
 const app = express();
 
 console.log(`Enviorment: ${process.env.NoDE_ENV}`);
-const url="mongodb+srv://sam:sam@cluster0.zd0y4.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+const url = "mongodb+srv://sam:sam@cluster0.zd0y4.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 mongoose.connect(url, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -23,16 +23,11 @@ mongoose.connect(url, {
 
 
 app.use(express.json());
-// const corsOptions ={
-//   origin:'*', 
-//   // credentials:true,            //access-control-allow-credentials:true
-//   optionSuccessStatus:200
-// }
 
 app.options('*', cors());
-app.use(cors({origin:'*',credentials:true}));
+app.use(cors({ origin: '*', credentials: true }));
 
-app.get('/',async (req, res) => {
+app.get('/', async (req, res) => {
   res.send("Build-back-end")
 })
 
