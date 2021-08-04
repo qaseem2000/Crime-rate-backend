@@ -3,13 +3,14 @@ const mongoose = require('mongoose');
 const express = require('express');
 const users = require('./router/users');
 const auth = require('./router/auth');
+
 const cors = require('cors');
 
 const app = express();
 
 console.log(`Enviorment: ${process.env.NoDE_ENV}`);
-
-mongoose.connect(config.connectionstring, {
+const url = "mongodb+srv://sam:sam@cluster0.zd0y4.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+mongoose.connect(url, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
@@ -22,14 +23,13 @@ mongoose.connect(config.connectionstring, {
 
 
 app.use(express.json());
-// const corsOptions ={
-//   origin:'http://localhost:3000', 
-//   credentials:true,            //access-control-allow-credentials:true
-//   optionSuccessStatus:200
-// }
 
 app.options('*', cors());
-app.use(cors());
+app.use(cors({ origin: '*', credentials: true }));
+
+app.get('/', async (req, res) => {
+  res.send("Build-back-end")
+})
 
 app.use('/api/users', users);
 app.use('/api/auth', auth);

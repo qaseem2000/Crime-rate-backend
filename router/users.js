@@ -5,9 +5,8 @@ const bcrypt = require("bcrypt");
 const _ = require("lodash");
 const auth = require("../middleware/auth");
 
-router.post("/", async (req, res) => {
-  //const {error}=validate(req.body);
-  //if(error) return res.status(400).send(error.details[0].message);
+const cors = require('cors')
+router.post("/", cors(), async (req, res) => {
   let user = await User.findOne({ email: req.body.email });
   if (user) return res.status(400).send("user already register");
 
@@ -15,7 +14,7 @@ router.post("/", async (req, res) => {
     username: req.body.username,
     email: req.body.email,
     password: req.body.password,
-    
+
   });
   const salt = await bcrypt.genSalt(10); //generate a key
   user.password = await bcrypt.hash(user.password, salt);
@@ -27,7 +26,7 @@ router.post("/", async (req, res) => {
   });
   res
     .header("x-auth-token", token)
-    .send(_.pick(user, ["_id", "name", "email", "userType"]));
+    .send(_.pick(user, ["_id", "name", "email"]));
 
   res.status(200).send(result);
 });
